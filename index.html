@@ -8,11 +8,14 @@
 </head>
 <body>
     <div class="container" style='margin: 10%'>
+        
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">País</span>
             </div>
-            <input type="text" id="pais" class="form-control" aria-label="País" aria-describedby="basic-addon1" disabled> 
+            <select id="pais" class="form-control js-example-basic-single" aria-label="País" aria-describedby="basic-addon1" onchange="return mostraStatus()"> 
+                <option id='default' disabled selected>Selecione algum país</option>
+            </select>
         </div>
 
         <div class="input-group mb-3">
@@ -43,8 +46,6 @@
             <input type="text" id="TotalMortes" class="form-control" aria-label="TotalMortes" aria-describedby="basic-addon1" disabled> 
         </div>
     </div>
-
-    
     <script src="./script.js"></script>
 </body>
 </html>

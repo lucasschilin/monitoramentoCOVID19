@@ -23,17 +23,30 @@ var totalconfirmadas = document.getElementById('TotalConfirmadas');
 var novasmortes = document.getElementById('NovasMortes');
 var totalmortes = document.getElementById('TotalMortes');
 
+var object;
+
 
 minhaPromise()
     .then(function(response) {
-        pais.value = response.Countries[23].Country;
-        novasconfirmadas.value = response.Countries[23].NewConfirmed;
-        totalconfirmadas.value = response.Countries[23].TotalConfirmed;
-        novasmortes.value = response.Countries[23].NewDeaths;
-        totalmortes.value = response.Countries[23].TotalDeaths;
-        console.log(response.Countries[23]);
+        object = response.Countries;
+        console.log(object);
+        for (let index = 0; index < response.Countries.length; index++) {
+            var optionpais = document.createElement('option');
+            optionpais.setAttribute('value', index);
+            pais.appendChild(optionpais);
+            optionpais.innerHTML = response.Countries[index].Country;
+        }
     })
     .catch(function(error) {
         console.warn(error);
     });
+
+function mostraStatus(){
+    novasconfirmadas.value = object[pais.value].NewConfirmed;
+    totalconfirmadas.value = object[pais.value].TotalConfirmed;
+    novasmortes.value = object[pais.value].NewDeaths;
+    totalmortes.value = object[pais.value].TotalDeaths;
+    console.log(object[pais.value]);
+}
+
 
